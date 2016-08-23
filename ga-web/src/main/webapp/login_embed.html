@@ -1,0 +1,169 @@
+<link href="resources/global/plugins/select2/select2.css" rel="stylesheet" type="text/css" />
+<link href="resources/admin/pages/css/login-soft.css" rel="stylesheet" type="text/css" />
+
+<link href="resources/global/css/components.css" rel="stylesheet" type="text/css" />
+<link href="resources/global/css/plugins.css" rel="stylesheet" type="text/css" />
+<link href="resources/admin/layout/css/layout.css" rel="stylesheet" type="text/css" />
+<link id="style_color" href="resources/admin/layout/css/themes/default.css" rel="stylesheet" type="text/css" />
+<link href="resources/admin/layout/css/custom.css" rel="stylesheet" type="text/css" />
+	<!-- END LOGO -->
+	<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+	<div class="menu-toggler sidebar-toggler"></div>
+	<!-- END SIDEBAR TOGGLER BUTTON -->
+	<!-- BEGIN LOGIN -->
+	<div class="content">
+		<!-- BEGIN LOGIN FORM -->
+		<form class="login-form" id="loginMainForm" method="post">
+			<h3 class="form-title">请登录</h3>
+			<div class="alert alert-danger display-hide" id="messageBox" style="display: none;">
+				<button class="close" data-close="alert"></button>
+				<span id=message> </span>
+			</div>
+			<div class="form-group">
+				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+				<label class="control-label visible-ie8 visible-ie9">用户名</label>
+				<div class="input-icon">
+					<i class="fa fa-user"></i> <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名"
+						name="loginMainUserName" id="loginMainUserName" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label visible-ie8 visible-ie9">密码</label>
+				<div class="input-icon">
+					<i class="fa fa-lock"></i> <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密码"
+						name="loginMainPassword" id="loginMainPassword" />
+				</div>
+			</div>
+			<div class="form-actions">
+				<label class="checkbox"> <input type="checkbox" name="remember" value="1" /> 记住我
+				</label>
+				<button type="button" class="btn blue pull-right" id="loginSubmitButton">
+					登录 <i class="m-icon-swapright m-icon-white"></i>
+				</button>
+			</div>
+			<div class="forget-password">
+				<h4>密码忘记了 ?</h4>
+				<p>
+					不要慌, 点击 <a href="javascript:;" id="forget-password"> 这里 </a> 重置您的密码.
+				</p>
+			</div>
+			<div class="create-account">
+				<p>
+					还没有帐户 ?&nbsp; <a href="javascript:;" id="register-btn"> 创建新帐户 </a>
+				</p>
+			</div>
+		</form>
+		<!-- END LOGIN FORM -->
+		<!-- BEGIN FORGOT PASSWORD FORM -->
+		<form class="forget-form">
+			<h3>忘记密码 ?</h3>
+			<p>输入您的电子邮箱来重置您的密码.</p>
+			<div class="form-group">
+				<div class="input-icon">
+					<i class="fa fa-envelope"></i> <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email" />
+				</div>
+			</div>
+			<div class="form-actions">
+				<button type="button" id="back-btn" class="btn green">
+					<i class="m-icon-swapleft m-icon-white"></i> 返回
+				</button>
+				<button type="submit" class="btn blue pull-right">
+					发送 <i class="m-icon-swapright m-icon-white"></i>
+				</button>
+			</div>
+		</form>
+		<!-- END FORGOT PASSWORD FORM -->
+		<!-- BEGIN REGISTRATION FORM -->
+		<form class="register-form" id="registNewForm">
+			<h3>注册新用户</h3>
+			<div class="alert alert-danger display-hide" id="messageBox" style="display: none;">
+				<button class="close" data-close="alert"></button>
+				<span id=message> </span>
+			</div>
+			<!-- 		<p>
+			 填入您的基本信息:
+		</p>
+		<div class="form-group">
+			<label class="control-label visible-ie8 visible-ie9">真实姓名</label>
+			<div class="input-icon">
+				<i class="fa fa-font"></i>
+				<input class="form-control placeholder-no-fix" type="text" placeholder="真实姓名" name="fullname"/>
+			</div>
+		</div>
+		<div class="form-group">
+			ie8, ie9 does not support html5 placeholder, so we just show field title for that
+			<label class="control-label visible-ie8 visible-ie9">电子邮箱</label>
+			<div class="input-icon">
+				<i class="fa fa-envelope"></i>
+				<input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email"/>
+			</div>
+		</div> -->
+			<p>请填写您的帐户信息:</p>
+			<div class="form-group">
+				<label class="control-label visible-ie8 visible-ie9">用户名</label>
+				<div class="input-icon">
+					<i class="fa fa-user"></i> <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名"
+						name="registerUsercode" id="registerUsercode" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label visible-ie8 visible-ie9">密码</label>
+				<div class="input-icon">
+					<i class="fa fa-lock"></i> <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密码"
+						name="registerPassword" id="registerPassword" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label visible-ie8 visible-ie9">重复密码</label>
+				<div class="controls">
+					<div class="input-icon">
+						<i class="fa fa-check"></i> <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="重复密码"
+							name="registerPrePassword" id="registerPrePassword" />
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label> <input type="checkbox" name="registerAgree" id="registerAgree" checked /> 我同意 <a href="#"> 服务条款 </a> 和 <a href="#"> 隐私条款 </a>
+				</label>
+				<div id="register_tnc_error"></div>
+			</div>
+			<div class="form-actions">
+				<button id="register-back-btn" type="button" class="btn green">
+					<i class="m-icon-swapleft m-icon-white"></i> 返回
+				</button>
+				<button type="button" class="btn blue pull-right" id="registerButton">
+					注册 <i class="m-icon-swapright m-icon-white"></i>
+				</button>
+			</div>
+		</form>
+		<!-- END REGISTRATION FORM -->
+	</div>
+	<!-- END LOGIN -->
+	<script src="resources/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="resources/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="resources/global/plugins/select2/select2.min.js"></script>
+	<script src="resources/admin/layout/scripts/demo.js" type="text/javascript"></script>
+	<!-- END PAGE LEVEL PLUGINS -->
+	<script src="bizjs/login/loginValidate.js" type="text/javascript"></script>
+	<script src="bizjs/login/login-soft.js" type="text/javascript"></script>
+	<script src="jslib/takeeasy.js" type="text/javascript"></script>
+	<!-- END PAGE LEVEL SCRIPTS -->
+	<script>
+	jQuery(document).ready(function() {     
+		Metronic.init(); // init metronic core components
+		Layout.init(); // init current layout
+		Demo.init(); // init demo features
+		Login.init();
+		// init background slide images
+		$.backstretch([
+		  "resources/admin/pages/media/bg/1.jpg",
+		  "resources/admin/pages/media/bg/2.jpg",
+		  "resources/admin/pages/media/bg/3.jpg",
+		  "resources/admin/pages/media/bg/4.jpg"
+		  ], {
+		    fade: 1000,
+		    duration: 8000
+			}
+		);
+	});
+</script>

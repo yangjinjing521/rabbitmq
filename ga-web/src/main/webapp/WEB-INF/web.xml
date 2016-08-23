@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+    http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/applicationContext.xml</param-value>
+  </context-param>
+
+
+  <!--&lt;!&ndash; 编码过滤 &ndash;&gt;-->
+  <!--<filter>-->
+    <!--<filter-name>encoding</filter-name>-->
+    <!--<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>-->
+    <!--<init-param>-->
+      <!--<param-name>encoding</param-name>-->
+      <!--<param-value>UTF-8</param-value>-->
+    <!--</init-param>-->
+    <!--<init-param>-->
+      <!--<param-name>forceEncoding</param-name>-->
+      <!--<param-value>true</param-value>-->
+    <!--</init-param>-->
+  <!--</filter>-->
+  <!--<filter-mapping>-->
+    <!--<filter-name>encoding</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+  <!--</filter-mapping>-->
+
+  <!-- 实例化Spring容器 -->
+  <!-- 应用启动时,该监听器被执行,它会读取Spring相关配置文件,其默认会到WEB-INF中查找applicationContext.xml -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+
+  <!-- SpringMVC核心分发器 -->
+  <servlet>
+    <servlet-name>SpringMVC</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring/spring-mvc.xml</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SpringMVC</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+
+  <!-- 配置Shiro过滤器,先让Shiro过滤系统接收到的请求 -->
+  <!-- 这里filter-name必须对应security.xml中定义的<bean id="shiroFilter"/> -->
+  <!-- 使用[/*]匹配所有请求,保证所有的可控请求都经过Shiro的过滤 -->
+  <!-- 通常会将此filter-mapping放置到最前面(即其他filter-mapping前面),以保证它是过滤器链中第一个起作用的 -->
+
+
+
+  <welcome-file-list>
+    <welcome-file>/index_frame.html</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -1,0 +1,8 @@
+com/city/ga/web/common/FastJsonMessageConverter.class
+com/city/ga/web/HelloWordProduct.class
+com/city/ga/web/DirectQueueConsumer.class
+com/city/ga/web/DirectQueueProduct.class
+com/city/ga/web/HelloWordConsumer.class
+com/city/ga/web/listener/RabbitListener$1.class
+com/city/ga/web/listener/RabbitListener.class
+com/city/ga/web/security/RestPermissionsAuthorizationFilter.class

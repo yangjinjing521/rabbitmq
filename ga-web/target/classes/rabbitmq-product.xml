@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/rabbit
+            http://www.springframework.org/schema/rabbit/spring-rabbit-1.5.xsd">
+
+    <description>rabbitmq 连接服务配置</description>
+    <!-- 连接配置 -->
+    <rabbit:connection-factory id="connectionFactory"  virtual-host="/"  host="${mq.host}" username="${mq.username}" password="${mq.password}" port="${mq.port}" />
+    <rabbit:admin connection-factory="connectionFactory"/>
+
+    <!-- 消息对象json转换类 -->
+    <bean id="jsonMessageConverter" class="com.city.ga.web.common.FastJsonMessageConverter"></bean>
+
+
+    <!-- spring template声明-->
+    <rabbit:template exchange="test-mq-exchange" id="amqpTemplate"  connection-factory="connectionFactory"  message-converter="jsonMessageConverter" />
+
+
+    <rabbit:queue id="queue_jin" name="queue_jin" durable="true" auto-delete="false" exclusive="false" />
+    <rabbit:queue id="queue_yang" name="queue_yang" durable="true" auto-delete="false" exclusive="false" />
+    <rabbit:queue id="queue_jing" name="queue_jing" durable="true" auto-delete="false" exclusive="false" />
+
+    <rabbit:direct-exchange name="test-mq-exchange" durable="true" auto-delete="false" id="test-mq-exchange">
+        <rabbit:bindings>
+            <rabbit:binding queue="queue_yang" key="queue_yang_key"></rabbit:binding>
+            <rabbit:binding queue="queue_jin" key="queue_jin_key"></rabbit:binding>
+            <rabbit:binding queue="queue_jing" key="queue_jing_key"></rabbit:binding>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+
+    <!--<rabbit:fanout-exchange name="test-mq-exchange" durable="true" auto-delete="false" id="test-mq-exchange">-->
+        <!--<rabbit:bindings>-->
+            <!--<rabbit:binding queue="queue_jin"/>-->
+            <!--<rabbit:binding queue="queue_yang"/>-->
+        <!--</rabbit:bindings>-->
+    <!--</rabbit:fanout-exchange>-->
+
+
+
+
+</beans>
+
